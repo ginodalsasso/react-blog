@@ -1,17 +1,4 @@
-
-/**
- *
- *
- * @export
- * @param {*} {
- *     image,
- *     title, 
- *     description,
- *     href,
- *     buttonLabel
- * }
- * @return {*} 
- */
+import { Button } from './Button';
 
 export function Card ({
     image,

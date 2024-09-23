@@ -1,3 +1,18 @@
+
+/**
+ *
+ *
+ * @export
+ * @param {*} {
+ *     image,
+ *     title, 
+ *     description,
+ *     href,
+ *     buttonLabel
+ * }
+ * @return {*} 
+ */
+
 export function Card ({
     image,
     title, 

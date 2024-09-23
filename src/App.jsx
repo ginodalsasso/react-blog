@@ -4,6 +4,8 @@ import {Contact} from './pages/Contact.jsx';
 import {Single} from './pages/Single.jsx';
 import { NotFound } from './pages/NotFound.jsx';
 import {Header} from './components/Header.jsx';
+import {ErrorBoundary} from 'react-error-boundary';
+import { Alert } from './components/Alert.jsx';
 
 function App() {
 
@@ -14,10 +16,16 @@ function App() {
         <>
         <Header page={page} />
             <div className="container my-3">
-                {pageContent}
+                <ErrorBoundary FallbackComponent={PageError}>
+                    {pageContent}
+                </ErrorBoundary>
             </div>
         </>
     ) 
+}
+
+function PageError({error}) {
+    return <Alert type="danger">{error.toString()}</Alert>
 }
 
 function getPageContent (page, param) {

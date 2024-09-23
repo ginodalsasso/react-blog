@@ -1,20 +1,16 @@
-/**
- * 
- * @param {string} placeholder 
- * @param {string} value 
- * @param {function} onChange 
- * @returns 
- */
+import { useId } from 'react'
 
-export function Input ({label, placeholder, value, onChange}) {
+export function Input ({type, label, ...props}) {
+
+    const id = useId()
+    const InputComponent = type === 'textarea' ? 'textarea' : 'input'
+
     return <div>
-        <input 
-            type="text" 
+        {label && <label htmlFor={id} className="form-label">{label}</label>}
+        <InputComponent 
             className="form-control" 
-            value={value} 
-            placeholder={placeholder} 
-            label={label}
-            onChange={ (e) => onChange(e.target.value) } 
+            id={id}
+            {...props}
         />
     </div>
 }

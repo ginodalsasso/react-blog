@@ -12,7 +12,7 @@ export function Card ({
         <div className="card-body">
         { title && <h5 className="card-title">{title}</h5> }
         { description && <p className="card-text">{description}</p> }
-        { showButton && <a href={href} className="btn btn-primary">{buttonLabel}</a>}
+        { showButton && <Button variant="primary" href={href}>{buttonLabel}</Button>}
         </div>
     </div>
 }

@@ -18,5 +18,10 @@ export function useHashNavigation() {
         }
     }, []);
 
-    return { page: hash.replace('#', '').toLowerCase() || 'home' }; // 'home' par défaut
+    const cleanedHash = hash.replace('#', '').toLowerCase(); // Nettoyer le hash
+
+    return { 
+        page: cleanedHash ? cleanedHash.split(':')[0]: 'home',
+        param: cleanedHash.split(':')[1] 
+    }; // Retourner la page et le paramètre
 }

@@ -7,8 +7,8 @@ import {Header} from './components/Header.jsx';
 
 function App() {
 
-    const {page} = useHashNavigation()
-    const pageContent = getPageContent(page)
+    const {page, param} = useHashNavigation()
+    const pageContent = getPageContent(page, param)
 
     return (
         <>
@@ -20,7 +20,7 @@ function App() {
     ) 
 }
 
-function getPageContent (page) {
+function getPageContent (page, param) {
     if (page === 'home') {
         return <Home />
     }
@@ -28,7 +28,7 @@ function getPageContent (page) {
         return <Contact />
     }
     if (page === 'post') {
-        return <Single />
+        return <Single postId={param} />
     }
     return <NotFound page={page} />
 }

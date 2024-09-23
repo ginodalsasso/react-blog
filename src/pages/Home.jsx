@@ -2,20 +2,32 @@ import { useDocumentTitle } from "../hooks/useDocumentTitle.js"
 import { useFetch } from "../hooks/useFetch.js"
 import { Spinner } from "../components/Spinner.jsx"
 import { Alert } from "../components/Alert.jsx"
+import { Card } from "../components/Card.jsx"
 
 export function Home () {
 
     useDocumentTitle('Mon blog')
     const {data, loading, error} = useFetch('https://jsonplaceholder.typicode.com/posts?_limit=10');
     
+    if(loading) { // si le chargement est en cours
+        return <Spinner />
+    }
+
+    if(error) { // si une erreur survient
+        return <Alert type="danger">{error.toString()}</Alert>
+    }
 
     return <>
         <h1 className="mb-3">Mon blog</h1>
-        {loading && <Spinner />}
-        {error && <Alert type="danger">{error.toString()}</Alert>}
         {data && <div className="row gap-4">
-            {data.map((post) => (<div key={post.id}> 
-                {post.title}
+            {data.map((post) => (<div key={post.id} className="col-12 col-md-4"> 
+                <Card
+                    image={`https://picsum.photos/id/${post.id}/280/180`}
+                    title={post.title}
+                    description={post.body}
+                    href={`#post:${post.id}`}
+                    buttonLabel="Voir l'article"
+                />
 
             </div>))}
         </div> }
